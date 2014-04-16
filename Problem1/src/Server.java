@@ -142,6 +142,14 @@ public class Server {
 	
 								}
 									break;
+								case ERROR: {
+									// Error
+									// Close connection
+									this.output.close();
+									this.input.close();
+									this.socket.close();
+								}
+								break;
 								case QUIT: {
 									// Send QUIT
 									System.out.println("Connection quitting.");
@@ -208,6 +216,8 @@ public class Server {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		System.out.println("Closed Server.");
 	}
 
 	/**

@@ -120,6 +120,8 @@ public class Client {
 								{
 									this.output.writeObject(new Protocol(Token.QUIT, "QUIT"));
 								}
+								// Wait to receive QUIT
+								p = (Protocol) input.readObject();
 								// Close connection
 								this.isRunning = false;
 								this.output.close();
@@ -168,42 +170,39 @@ public class Client {
 				} // end run loop
 				
 			} catch (UnexpectedTokenException e) {
-				// Send ERROR
-				if (!this.socket.isOutputShutdown()) 
-				{
-					this.output.writeObject(new Protocol(Token.ERROR, e
-						.getMessage()));
-				}
-				// Close connection
-				this.output.close();
-				this.input.close();
-				this.socket.close();
-				//
-				e.printStackTrace();
-			} /* catch (UnexpectedArgumentException e) {
-				// Send ERROR
-				if (!this.socket.isOutputShutdown()) 
-				{
-					this.output.writeObject(new Protocol(Token.ERROR, e
-						.getMessage()));
-				}
-				// Close connection
-				this.output.close();
-				this.input.close();
-				this.socket.close();
-				//
-				e.printStackTrace();
-			} */ catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				error(e);
+			} catch (ClassNotFoundException e1) {
+				error(e1);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				error(e);
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		System.out.println("Closed client connection.");
+	}
+	
+	/**
+	 * Handles an ERROR (token).
+	 * @param e
+	 * @throws IOException
+	 */
+	private void error(Exception e) throws IOException
+	{
+		// Send ERROR
+		if (!this.socket.isOutputShutdown()) 
+		{
+			this.output.writeObject(new Protocol(Token.ERROR, e
+				.getMessage()));
+		}
+		// Close connection
+		this.output.close();
+		this.input.close();
+		this.socket.close();
+		//
+		e.printStackTrace();
 	}
 
 	/**
