@@ -60,7 +60,24 @@ A sample run of the system would look like this:
 
 
 You may design the interface for your client however you like (either command-line or graphical).  
-The server can listen on a port of your choice.  No RMI.  Your server doesn’t have to support multiple asynchronous connections.    
+The server can listen on a port of your choice.  No RMI.  Your server doesn’t have to support multiple asynchronous connections.
+
+#### JavaDoc Documentation
+
+See http://glavin001.github.io/CSCI3465-Final-Exam/Problem1/doc/
+
+#### For Grading
+
+- [✓] Command Line Interface
+- [✓] `Protocol` class is a Serializable object class that will have two fields:
+- [✓] a `Token` (which will be an enumerated type), and 
+- [✓] an argument (stored as a String).
+- [✓] Communicates in a synchronous manner using Protocol objects transmitted via ObjectInputStream and ObjectOutputStream stream objects
+- [✓] if it was something other than what was expected, an ERROR Protocol object is sent and the connection closed
+- [✓] Correctness: your program does what the question asks of it (50%)
+- [✓] Code clarity/ease of understanding (35%) - Cleanly commented code and generated JavaDoc documentation
+- [✓] Formatting, class/method/field naming, whitespace, and comments - Whitespace has been made all spaces, conventional naming scheme, and appropriate parts are commented.
+- [✓] Effective use of classes to organize data/functionality (15%)
 
 ### b.
 Produce a [State UML diagram](http://en.wikipedia.org/wiki/State_diagram_%28UML%29) for your client-server application.  You can use MSWord to cobble this together, or a program of your choice.  Save it as a Word document, a WMF, a PDF, or an image file.
@@ -78,6 +95,11 @@ Also, write a short driver that demonstrates that these classes function as inte
 
 - BASIC: Implement the Caesar Cipher (each character is incremented by 3, e.g., A -> D, F -> I)   
 - ENHANCED: Design your Reader/Writer in such a way that makes it possible to vary the cipher used.
+
+#### JavaDoc Documentation
+
+See http://glavin001.github.io/CSCI3465-Final-Exam/Problem2/doc/
+
 
 ### b.
 Which two design patterns are at work here?
