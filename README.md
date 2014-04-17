@@ -82,6 +82,11 @@ See http://glavin001.github.io/CSCI3465-Final-Exam/Problem1/doc/
 ### b.
 Produce a [State UML diagram](http://en.wikipedia.org/wiki/State_diagram_%28UML%29) for your client-server application.  You can use MSWord to cobble this together, or a program of your choice.  Save it as a Word document, a WMF, a PDF, or an image file.
 
+#### Answer
+
+See the State Diagram UML in Problem1 directory.
+![state diagram](Problem1/State-Diagram-UML.png)
+
 ## Problem 2 (15 pts)
 
 ### a.
