@@ -7,10 +7,11 @@ public class CaesarCipher implements Cipher
 {
 
     /**
-     * The length of the alphabet used in the Caesar Cipher. English has 26
-     * letters, so this value is fixed to 26.
+     * The length of the alphabet used in the Caesar Cipher. The char data type
+     * is a single 16-bit Unicode character. It has a minimum value of '\u0000'
+     * (or 0) and a maximum value of '\uffff' (or 65,535 inclusive).
      */
-    static final int ALPHABET_SIZE = 26;
+    static final int ALPHABET_SIZE = 65535;
 
     /**
      * The character offset in the Caesar Cipher calculations. Defaults to 3.
@@ -22,17 +23,16 @@ public class CaesarCipher implements Cipher
      */
     public void encrypt(char[] cbuf, int off, int len)
     {
+        // Iterate over all characters
         for (int i = off; i < off + len; i++)
         {
             char c = cbuf[i];
-            if (Character.isLetter(c))
+            int c2 = (int) c + charOffset;
+            if (c2 > ALPHABET_SIZE)
             {
-                c = (char) ((int) c + charOffset);
-                if (!Character.isLetter(c))
-                    c = (char) ((int) c - ALPHABET_SIZE);
-                // C s no longer in alphabet. Move it back in.
-                cbuf[i] = c;
+                c2 = c2 - ALPHABET_SIZE;
             }
+            cbuf[i] = (char) (c2);
         }
     }
 
@@ -41,17 +41,16 @@ public class CaesarCipher implements Cipher
      */
     public void decrypt(char[] cbuf, int off, int len)
     {
+        // Iterate over all characters
         for (int i = off; i < off + len; i++)
         {
             char c = cbuf[i];
-            if (Character.isLetter(c))
+            int c2 = (int) c - charOffset;
+            if (c2 < 0)
             {
-                c = (char) ((int) c - charOffset);
-                if (!Character.isLetter(c))
-                    c = (char) ((int) c + ALPHABET_SIZE);
-                // C is no longer in the alphabet. Move it back in.
-                cbuf[i] = c;
+                c2 = ALPHABET_SIZE + c2;
             }
+            cbuf[i] = (char) (c2);
         }
     }
 

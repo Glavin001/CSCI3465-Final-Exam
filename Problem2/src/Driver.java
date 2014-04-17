@@ -22,7 +22,7 @@ class Driver
         cipher1.setCharOffset(3); // Default is 3
 
         CaesarCipher cipher2 = new CaesarCipher();
-        cipher2.setCharOffset(6); // Default is 3
+        cipher2.setCharOffset(12345); // Default is 3
 
         System.out.println("=== Original Text ===");
         System.out.println("1. " + testStr1);
