@@ -3,7 +3,8 @@
  * 
  * @author Glavin Wiechert
  */
-public interface Cipher {
+public interface Cipher
+{
 
     /**
      * The encryption algorithm.

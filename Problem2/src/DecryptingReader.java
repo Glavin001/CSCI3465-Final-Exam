@@ -9,7 +9,8 @@ import java.nio.CharBuffer;
  * 
  * @author Glavin Wiechert
  */
-public class DecryptingReader extends Reader {
+public class DecryptingReader extends Reader
+{
 
     /**
      * The cipher used.
@@ -27,7 +28,8 @@ public class DecryptingReader extends Reader {
      * @param reader
      *            The reader to decorate
      */
-    public DecryptingReader(Reader reader) {
+    public DecryptingReader(Reader reader)
+    {
         this.reader = reader;
     }
 
@@ -42,7 +44,8 @@ public class DecryptingReader extends Reader {
      * @return The number of characters added to the buffer, or -1 if this
      *         source of characters is at its end
      */
-    public int read(CharBuffer target) throws IOException {
+    public int read(CharBuffer target) throws IOException
+    {
         return read(target.array());
     }
 
@@ -57,11 +60,14 @@ public class DecryptingReader extends Reader {
      * @throws IOException
      *             if an I/O error occurs
      */
-    public int read() throws IOException {
+    public int read() throws IOException
+    {
         int result = reader.read();
-        if (result == -1) {
+        if (result == -1)
+        {
             return -1;
-        } else {
+        } else
+        {
             char[] cbuf = { (char) result };
             read(cbuf, 0, 1);
             return cbuf[0];
@@ -77,7 +83,8 @@ public class DecryptingReader extends Reader {
      * @return The number of characters read, or -1 if the end of the stream has
      *         been reached
      */
-    public int read(char[] cbuf) throws IOException {
+    public int read(char[] cbuf) throws IOException
+    {
         return read(cbuf, 0, cbuf.length);
     }
 
@@ -93,7 +100,8 @@ public class DecryptingReader extends Reader {
      * @return The number of characters read, or -1 if the end of the stream has
      *         been reached
      */
-    public int read(char[] cbuf, int off, int len) throws IOException {
+    public int read(char[] cbuf, int off, int len) throws IOException
+    {
         int result = reader.read(cbuf, off, len);
         cipher.decrypt(cbuf, off, len);
         return result;
@@ -107,7 +115,8 @@ public class DecryptingReader extends Reader {
      *            The number of characters to skip
      * @return The number of characters actually skipped
      */
-    public long skip(long n) throws IOException {
+    public long skip(long n) throws IOException
+    {
         return reader.skip(n);
     }
 
@@ -120,7 +129,8 @@ public class DecryptingReader extends Reader {
      *         false otherwise. Note that returning false does not guarantee
      *         that the next read will block.
      */
-    public boolean ready() throws IOException {
+    public boolean ready() throws IOException
+    {
         return reader.ready();
     }
 
@@ -131,7 +141,8 @@ public class DecryptingReader extends Reader {
      * 
      * @return true if and only if this stream supports the mark operation.
      */
-    public boolean markSupported() {
+    public boolean markSupported()
+    {
         return reader.markSupported();
     }
 
@@ -145,7 +156,8 @@ public class DecryptingReader extends Reader {
      *            preserving the mark. After reading this many characters,
      *            attempting to reset the stream may fail.
      */
-    public void mark(int readAheadLimit) throws IOException {
+    public void mark(int readAheadLimit) throws IOException
+    {
         reader.mark(readAheadLimit);
     }
 
@@ -157,7 +169,8 @@ public class DecryptingReader extends Reader {
      * character-input streams support the reset() operation, and some support
      * reset() without supporting mark().
      */
-    public void reset() throws IOException {
+    public void reset() throws IOException
+    {
         reader.reset();
     }
 
@@ -167,7 +180,8 @@ public class DecryptingReader extends Reader {
      * reset(), or skip() invocations will throw an IOException. Closing a
      * previously closed stream has no effect.
      */
-    public void close() throws IOException {
+    public void close() throws IOException
+    {
         reader.close();
     }
 
@@ -176,7 +190,8 @@ public class DecryptingReader extends Reader {
      * 
      * @return The current cipher.
      */
-    public Cipher getCipher() {
+    public Cipher getCipher()
+    {
         return cipher;
     }
 
@@ -186,7 +201,8 @@ public class DecryptingReader extends Reader {
      * @param cipher
      *            The new cipher.
      */
-    public void setCipher(Cipher cipher) {
+    public void setCipher(Cipher cipher)
+    {
         this.cipher = cipher;
     }
 

@@ -6,7 +6,8 @@ import java.io.IOException;
  * 
  * @author Glavin Wiechert
  */
-public class EncryptingWriter extends Writer {
+public class EncryptingWriter extends Writer
+{
 
     /**
      * The cipher used.
@@ -24,7 +25,8 @@ public class EncryptingWriter extends Writer {
      * @param writer
      *            The writer to decorate
      */
-    public EncryptingWriter(Writer writer) {
+    public EncryptingWriter(Writer writer)
+    {
         this.writer = writer;
     }
 
@@ -37,7 +39,8 @@ public class EncryptingWriter extends Writer {
      * @param c
      *            int specifying a character to be written
      */
-    public void write(int c) throws IOException {
+    public void write(int c) throws IOException
+    {
         char[] cbuf = { (char) c };
         write(cbuf);
     }
@@ -48,7 +51,8 @@ public class EncryptingWriter extends Writer {
      * @param cbuf
      *            Array of characters to be written
      */
-    public void write(char[] cbuf) throws IOException {
+    public void write(char[] cbuf) throws IOException
+    {
         write(cbuf, 0, cbuf.length);
     }
 
@@ -62,7 +66,8 @@ public class EncryptingWriter extends Writer {
      * @param len
      *            Maximum number of characters to read.
      */
-    public void write(char[] cbuf, int off, int len) throws IOException {
+    public void write(char[] cbuf, int off, int len) throws IOException
+    {
         //
         cipher.encrypt(cbuf, off, len);
         // Output the result
@@ -75,7 +80,8 @@ public class EncryptingWriter extends Writer {
      * @param str
      *            String to be written
      */
-    public void write(String str) throws IOException {
+    public void write(String str) throws IOException
+    {
         write(str.toCharArray());
     }
 
@@ -89,7 +95,8 @@ public class EncryptingWriter extends Writer {
      * @param len
      *            Number of characters to write
      */
-    public void write(String str, int off, int len) throws IOException {
+    public void write(String str, int off, int len) throws IOException
+    {
         write(str.toCharArray(), off, len);
     }
 
@@ -108,7 +115,8 @@ public class EncryptingWriter extends Writer {
      *            four characters "null" are appended to this writer.
      * @return This writer
      */
-    public Writer append(CharSequence csq) throws IOException {
+    public Writer append(CharSequence csq) throws IOException
+    {
         write(csq.toString());
         return writer;
     }
@@ -133,7 +141,8 @@ public class EncryptingWriter extends Writer {
      * @return This writer
      */
     public Writer append(CharSequence csq, int start, int end)
-            throws IOException {
+            throws IOException
+    {
         write(csq.subSequence(start, end).toString());
         return writer;
     }
@@ -149,7 +158,8 @@ public class EncryptingWriter extends Writer {
      *            The 16-bit character to append
      * @return This writer
      */
-    public Writer append(char c) throws IOException {
+    public Writer append(char c) throws IOException
+    {
         write(c);
         return writer;
     }
@@ -166,7 +176,8 @@ public class EncryptingWriter extends Writer {
      * operating system for writing; it does not guarantee that they are
      * actually written to a physical device such as a disk drive.
      */
-    public void flush() throws IOException {
+    public void flush() throws IOException
+    {
         writer.flush();
     }
 
@@ -175,7 +186,8 @@ public class EncryptingWriter extends Writer {
      * further write() or flush() invocations will cause an IOException to be
      * thrown. Closing a previously closed stream has no effect.
      */
-    public void close() throws IOException {
+    public void close() throws IOException
+    {
         writer.close();
     }
 
@@ -184,7 +196,8 @@ public class EncryptingWriter extends Writer {
      * 
      * @return The current cipher.
      */
-    public Cipher getCipher() {
+    public Cipher getCipher()
+    {
         return cipher;
     }
 
@@ -194,7 +207,8 @@ public class EncryptingWriter extends Writer {
      * @param cipher
      *            The new cipher.
      */
-    public void setCipher(Cipher cipher) {
+    public void setCipher(Cipher cipher)
+    {
         this.cipher = cipher;
     }
 

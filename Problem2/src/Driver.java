@@ -9,9 +9,11 @@ import java.io.BufferedReader;
  * 
  * @author Glavin Wiechert
  */
-class Driver {
+class Driver
+{
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException
+    {
         String testStr1 = "abcdefghijklmnopqrstuvwxyz";
         String testStr2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String filePath = "test.out";

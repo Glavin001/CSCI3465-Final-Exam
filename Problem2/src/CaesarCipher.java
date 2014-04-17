@@ -3,7 +3,8 @@
  * 
  * @author Glavin Wiechert
  */
-public class CaesarCipher implements Cipher {
+public class CaesarCipher implements Cipher
+{
 
     /**
      * The length of the alphabet used in the Caesar Cipher. English has 26
@@ -19,10 +20,13 @@ public class CaesarCipher implements Cipher {
     /**
      * Encryption implemented with Caesar cipher.
      */
-    public void encrypt(char[] cbuf, int off, int len) {
-        for (int i = off; i < off + len; i++) {
+    public void encrypt(char[] cbuf, int off, int len)
+    {
+        for (int i = off; i < off + len; i++)
+        {
             char c = cbuf[i];
-            if (Character.isLetter(c)) {
+            if (Character.isLetter(c))
+            {
                 c = (char) ((int) c + charOffset);
                 if (!Character.isLetter(c))
                     c = (char) ((int) c - ALPHABET_SIZE);
@@ -35,10 +39,13 @@ public class CaesarCipher implements Cipher {
     /**
      * Decryption implemented with Caesar cipher.
      */
-    public void decrypt(char[] cbuf, int off, int len) {
-        for (int i = off; i < off + len; i++) {
+    public void decrypt(char[] cbuf, int off, int len)
+    {
+        for (int i = off; i < off + len; i++)
+        {
             char c = cbuf[i];
-            if (Character.isLetter(c)) {
+            if (Character.isLetter(c))
+            {
                 c = (char) ((int) c - charOffset);
                 if (!Character.isLetter(c))
                     c = (char) ((int) c + ALPHABET_SIZE);
@@ -53,7 +60,8 @@ public class CaesarCipher implements Cipher {
      * 
      * @return the charOffset
      */
-    public int getCharOffset() {
+    public int getCharOffset()
+    {
         return charOffset;
     }
 
@@ -63,7 +71,8 @@ public class CaesarCipher implements Cipher {
      * @param charOffset
      *            the charOffset to set
      */
-    public void setCharOffset(int charOffset) {
+    public void setCharOffset(int charOffset)
+    {
         this.charOffset = charOffset;
     }
 

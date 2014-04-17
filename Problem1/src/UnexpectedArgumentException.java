@@ -1,16 +1,17 @@
-
 /**
- * @author  Glavin Wiechert
- *
+ * @author Glavin Wiechert
+ * 
  */
-public class UnexpectedArgumentException extends Exception {
-	/**
+public class UnexpectedArgumentException extends Exception
+{
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public UnexpectedArgumentException(String message) {
-		super(message);
-	}
+    public UnexpectedArgumentException(String message)
+    {
+        super(message);
+    }
 
 }
