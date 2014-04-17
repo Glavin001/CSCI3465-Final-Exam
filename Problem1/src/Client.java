@@ -37,8 +37,8 @@ public class Client {
 	/**
 	 * Constructor
 	 * 
-	 * @param host
-	 * @param port
+	 * @param hostname The hostname.
+	 * @param port The post number.
 	 */
 	public Client(String hostname, int port) {
 		// Connect to server
@@ -186,8 +186,8 @@ public class Client {
 	
 	/**
 	 * Handles an ERROR (token).
-	 * @param e
-	 * @throws IOException
+	 * @param e The exception.
+	 * @throws IOException  if an I/O error occurs
 	 */
 	private void error(Exception e) throws IOException
 	{

@@ -23,6 +23,8 @@ public class Protocol implements Serializable {
 
 	/**
 	 * Constructor
+	 * @param t The Token.
+	 * @param a The argument.
 	 */
 	public Protocol(Token t, String a) {
 		this.token = t;

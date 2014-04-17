@@ -55,6 +55,7 @@ public class DecryptingReader extends Reader {
      * @return The character read, as an integer in the range 0 to 65535
      *         (0x00-0xffff), or -1 if the end of the stream has been reached
      * @throws IOException
+     *             if an I/O error occurs
      */
     public int read() throws IOException {
         int result = reader.read();
@@ -114,6 +115,7 @@ public class DecryptingReader extends Reader {
      * Tells whether this stream is ready to be read.
      * 
      * @throws IOException
+     *             if an I/O error occurs
      * @return True if the next read() is guaranteed not to block for input,
      *         false otherwise. Note that returning false does not guarantee
      *         that the next read will block.
