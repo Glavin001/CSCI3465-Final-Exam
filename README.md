@@ -47,7 +47,7 @@ A sample run of the system would look like this:
 | recv READY, send PLUS | |
 |  |  recv PLUS, it’s a valid operation; wait for two operands |
 | send CONST 1 | |
-| send CONST 2 | |
+| send CONST 1 | |
 | wait for response | |
 | | recv both CONSTs, verify they are CONSTs, perform operation |
 | | send CONST 2 (result of operation) |
