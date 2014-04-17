@@ -114,16 +114,28 @@ public class Server
                                     // Validate CONSTs
                                     Double v1;
                                     Double v2;
-                                    try
+                                    if (c1.getToken().equals(Token.CONST1)
+                                            && c1.getToken().equals(
+                                                    Token.CONST1))
                                     {
-                                        v1 = Double.parseDouble(c1
-                                                .getArgument());
-                                        v2 = Double.parseDouble(c2
-                                                .getArgument());
-                                    } catch (NumberFormatException e)
+                                        try
+                                        {
+                                            v1 = Double.parseDouble(c1
+                                                    .getArgument());
+                                            v2 = Double.parseDouble(c2
+                                                    .getArgument());
+                                        } catch (NumberFormatException e)
+                                        {
+                                            throw new UnexpectedArgumentException(
+                                                    "Argument(s) could not be parsed as doubles.");
+                                        }
+
+                                    } else
                                     {
-                                        throw new UnexpectedArgumentException(
-                                                "Argument(s) could not be parsed as doubles.");
+                                        // Unexpected operation token.
+                                        throw new UnexpectedTokenException(
+                                                p.getToken(), "CONT1");
+
                                     }
 
                                     // Perform operation
