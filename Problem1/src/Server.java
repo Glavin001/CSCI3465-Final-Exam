@@ -105,80 +105,8 @@ public class Server
                                 case MULTIPLY:
                                 case DIVIDE:
                                 {
-                                    // Read two CONSTs
-                                    Protocol c1 = (Protocol) this.input
-                                            .readObject();
-                                    Protocol c2 = (Protocol) this.input
-                                            .readObject();
-
-                                    // Validate CONSTs
-                                    Double v1;
-                                    Double v2;
-                                    if (c1.getToken().equals(Token.CONST1)
-                                            && c1.getToken().equals(
-                                                    Token.CONST1))
-                                    {
-                                        try
-                                        {
-                                            v1 = Double.parseDouble(c1
-                                                    .getArgument());
-                                            v2 = Double.parseDouble(c2
-                                                    .getArgument());
-                                        } catch (NumberFormatException e)
-                                        {
-                                            throw new UnexpectedArgumentException(
-                                                    "Argument(s) could not be parsed as doubles.");
-                                        }
-
-                                    } else
-                                    {
-                                        // Unexpected operation token.
-                                        throw new UnexpectedTokenException(
-                                                p.getToken(), "CONT1");
-
-                                    }
-
-                                    // Perform operation
-                                    Double result;
-                                    switch (p.getToken())
-                                    {
-                                    case PLUS:
-                                    {
-                                        result = v1 + v2;
-                                    }
-                                        break;
-                                    case MINUS:
-                                    {
-                                        result = v1 - v2;
-                                    }
-                                        break;
-                                    case MULTIPLY:
-                                    {
-                                        result = v1 * v2;
-                                    }
-                                        break;
-                                    case DIVIDE:
-                                    {
-                                        result = v1 / v2;
-                                    }
-                                        break;
-                                    default:
-                                    {
-                                        // Unexpected operation token.
-                                        throw new UnexpectedTokenException(
-                                                p.getToken(),
-                                                "PLUS or MINUS or DIVIDE or MULTIPLY");
-                                    }
-                                    }
-
-                                    // Send back result
-                                    this.output.writeObject(new Protocol(
-                                            Token.CONST2, String
-                                                    .valueOf(result)));
-
-                                    // Continue, and loop to process next
-                                    // operation.
-
+                                    // Performance Arithmetic Operations
+                                    performMath(p);
                                 }
                                     break;
                                 case ERROR:
@@ -269,6 +197,86 @@ public class Server
         }
 
         System.out.println("Closed Server.");
+    }
+
+    /**
+     * Process Arithmetic Operation with a Protocol message.
+     * 
+     * @param p
+     *            Previous Protocol message.
+     * @throws ClassNotFoundException Class not found.
+     * @throws IOException IO Exception.
+     * @throws UnexpectedTokenException Unexpected Token in Protocol received.
+     * @throws UnexpectedArgumentException Unexpected Argument in Protocol received.
+     */
+    public void performMath(Protocol p) throws UnexpectedArgumentException,
+            ClassNotFoundException, IOException, UnexpectedTokenException
+    {
+        // Read two CONSTs
+        Protocol c1 = (Protocol) this.input.readObject();
+        Protocol c2 = (Protocol) this.input.readObject();
+
+        // Validate CONSTs
+        Double v1;
+        Double v2;
+        if (c1.getToken().equals(Token.CONST1)
+                && c1.getToken().equals(Token.CONST1))
+        {
+            try
+            {
+                v1 = Double.parseDouble(c1.getArgument());
+                v2 = Double.parseDouble(c2.getArgument());
+            } catch (NumberFormatException e)
+            {
+                throw new UnexpectedArgumentException(
+                        "Argument(s) could not be parsed as doubles.");
+            }
+
+        } else
+        {
+            // Unexpected operation token.
+            throw new UnexpectedTokenException(p.getToken(), "CONT1");
+
+        }
+
+        // Perform operation
+        Double result;
+        switch (p.getToken())
+        {
+        case PLUS:
+        {
+            result = v1 + v2;
+        }
+            break;
+        case MINUS:
+        {
+            result = v1 - v2;
+        }
+            break;
+        case MULTIPLY:
+        {
+            result = v1 * v2;
+        }
+            break;
+        case DIVIDE:
+        {
+            result = v1 / v2;
+        }
+            break;
+        default:
+        {
+            // Unexpected operation token.
+            throw new UnexpectedTokenException(p.getToken(),
+                    "PLUS or MINUS or DIVIDE or MULTIPLY");
+        }
+        }
+
+        // Send back result
+        this.output.writeObject(new Protocol(Token.CONST2, String
+                .valueOf(result)));
+
+        // Continue, and loop to process next
+        // operation.
     }
 
     /**

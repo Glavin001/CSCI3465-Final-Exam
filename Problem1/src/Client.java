@@ -26,12 +26,12 @@ public class Client
     ObjectOutputStream output;
 
     /**
-     * 
+     * Keyboard input.
      */
     Scanner keyboard;
 
     /**
-     * 
+     * Flag if client is currently running.
      */
     boolean isRunning;
 
