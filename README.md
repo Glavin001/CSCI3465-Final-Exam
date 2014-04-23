@@ -1,7 +1,13 @@
-CSCI3465-Final-Exam
+[CSCI3465-Final-Exam](https://github.com/Glavin001/CSCI3465-Final-Exam)
 ===================
 
 > Final Exam (take home part) for CSCI3465 Object-Oriented Programming with Java
+
+**Disclaimer**: This is for educational purposes only. 
+I advise you to NOT review this source code if you are currently or are planning to take this course.
+Your actions are your own.
+For those who are interested in learning from this as a resource, 
+I hope you enjoy.
 
 ---
 
